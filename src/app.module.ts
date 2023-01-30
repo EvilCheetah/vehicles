@@ -1,8 +1,14 @@
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
+
 import { VehicleMakeModule } from './vehicle-make/vehicle-make.module';
 
 
 @Module({
-    imports: [VehicleMakeModule],
+    imports: [
+        ConfigModule.forRoot(),
+
+        VehicleMakeModule
+    ],
 })
 export class AppModule {}
