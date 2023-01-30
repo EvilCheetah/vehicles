@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { VehicleMakeService } from './vehicle-make.service';
-import { CreateVehicleMakeDto } from './dto/create-vehicle-make.dto';
-import { UpdateVehicleMakeDto } from './dto/update-vehicle-make.dto';
+import { CreateVehicleMakeDTO } from './dto/create-vehicle-make.dto';
+import { UpdateVehicleMakeDTO } from './dto/update-vehicle-make.dto';
 
 
 @Controller('vehicle-make')
@@ -15,10 +15,10 @@ export class VehicleMakeController
     @Post()
     create(
         @Body()
-        createVehicleMakeDto: CreateVehicleMakeDto
+        createVehicleMakeDTO: CreateVehicleMakeDTO
     )
     {
-        return this.vehicleMakeService.create(createVehicleMakeDto);
+        return this.vehicleMakeService.create(createVehicleMakeDTO);
     }
 
 
@@ -31,33 +31,33 @@ export class VehicleMakeController
 
     @Get(':id')
     findOne(
-        @Param('id')
-        id: string
+        @Param('id', ParseIntPipe)
+        make_id: number
     )
     {
-        return this.vehicleMakeService.findOne(+id);
+        return this.vehicleMakeService.findOne(make_id);
     }
 
 
     @Patch(':id')
     update(
-        @Param('id')
-        id: string,
+        @Param('id', ParseIntPipe)
+        make_id: number,
         
         @Body()
-        updateVehicleMakeDto: UpdateVehicleMakeDto
+        updateVehicleMakeDTO: UpdateVehicleMakeDTO
     )
     {
-        return this.vehicleMakeService.update(+id, updateVehicleMakeDto);
+        return this.vehicleMakeService.update(make_id, updateVehicleMakeDTO);
     }
 
     
     @Delete(':id')
     remove(
-        @Param('id')
-        id: string
+        @Param('id', ParseIntPipe)
+        make_id: number
     )
     {
-        return this.vehicleMakeService.remove(+id);
+        return this.vehicleMakeService.remove(make_id);
     }
 }
