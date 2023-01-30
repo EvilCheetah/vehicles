@@ -13,7 +13,7 @@ export function get_db_config(): MikroOrmModuleAsyncOptions
             user:       config.get('DB_USERNAME'),
             password:   config.get('DB_PASSWORD'),
             dbName:     config.get('DB_NAME'),
-            entities:   ['dist/**/*.entity.ts'],
+            entities:   ['dist/**/*.entity.js'],
             entitiesTs: ['src/**/*.entity.ts']
         }),
         imports: [ConfigModule],
